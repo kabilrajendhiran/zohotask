@@ -44,7 +44,7 @@
                 </form>
                 	
                 <form action="GetAllAudits" method="get">
-                    <input class="btn btn-danger" type="submit" value="Logout">
+                    <input class="btn btn-danger" type="submit" value="Audit">
                 </form>
                 	
             </div>
