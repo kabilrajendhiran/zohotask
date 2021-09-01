@@ -19,7 +19,7 @@ public class AuditManager {
 	public void createAudit(boolean validity, HttpServletRequest request)
 	{
 		AuditBuilder auditBuilder = new AuditBuilder();
-		Audit audit = auditBuilder.build(request);
+		Audit audit = auditBuilder.build(request,true);
 		try {
 			database.createAudit(audit);
 		} catch (SQLException e) {
@@ -31,7 +31,7 @@ public class AuditManager {
 	public void createAudit(boolean validity, HttpServletRequest request, String ticketId)
 	{
 		AuditBuilder auditBuilder = new AuditBuilder();
-		Audit audit = auditBuilder.build(request,ticketId);
+		Audit audit = auditBuilder.build(request,ticketId,true);
 		try {
 			database.createAudit(audit);
 		} catch (SQLException e) {

@@ -36,7 +36,9 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Email Id</th>
-                        <th scope="col">User Agent</th>
+                        <th scope="col">Browser</th>
+                        <th scope="col">Device</th>
+                        <th scope="col">OS</th>
                         <th scope="col">IP Address</th>
                         <th scope="col">Activity</th>
                         <th scope="col">TimeStamp</th>
@@ -51,7 +53,9 @@
                 for (Audit audit :audits) {
                     out.write("<tr>");
                     out.write("<td>"+ Encode.forHtml(audit.getEmail()) +"</td>");
-                    out.write("<td>"+ Encode.forHtml(audit.getUserAgent())+"</td>");
+                    out.write("<td>"+ Encode.forHtml(audit.getBrowser())+"</td>");
+                    out.write("<td>"+ Encode.forHtml(audit.getDevice())+"</td>");
+                    out.write("<td>"+ Encode.forHtml(audit.getOs())+"</td>");
                     out.write("<td>"+ Encode.forHtml(audit.getIpAddr()) +"</td>");
                     out.write("<td>"+ Encode.forHtml(audit.getActivity()) +"</td>");
                     out.write("<td>"+ Encode.forHtml(audit.getCurrentTimestamp().toString()) +"</td>");
