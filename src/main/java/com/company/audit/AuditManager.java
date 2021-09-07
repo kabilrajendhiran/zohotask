@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.company.data.AuthDatabaseContext;
+import com.company.esdatabase.ESAuditRepository;
 import com.company.ticket.CookieManager;
 import com.company.user.UserManager;
 
@@ -15,6 +16,7 @@ public class AuditManager {
 	AuthDatabaseContext database = new AuthDatabaseContext();
 	CookieManager cookieManager = new CookieManager();
 	UserManager userManager = new UserManager();
+	ESAuditRepository esdatabase = new ESAuditRepository();
 	
 	public void createAudit(boolean validity, HttpServletRequest request)
 	{
@@ -34,6 +36,8 @@ public class AuditManager {
 		Audit audit = auditBuilder.build(request,ticketId,true);
 		try {
 			database.createAudit(audit);
+			esdatabase.insert(audit);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,8 +52,9 @@ public class AuditManager {
 		
 		List<Audit> audits = null;
 		try {
-		 	audits = database.getAllAudits(email);
-		} catch (SQLException e) {
+		 	// audits = database.getAllAudits(email);
+		 	audits = esdatabase.getAllAudits(email);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -1,5 +1,4 @@
 package com.company.audit;
-import java.sql.Timestamp;
 
 public class Audit {
 	private String email;
@@ -9,16 +8,14 @@ public class Audit {
 	private String os;
 	private String ipAddr;
 	private String activity;
-	private Timestamp currentTimestamp;
+	private String currentTimestamp;
 	private boolean validity;
 	
 	public Audit()
-	{
-		
-	}
+	{}
 	
 
-	public Audit(String email, String userAgent, String ipAddr, String activity, Timestamp currentTimestamp, boolean validity) {
+	public Audit(String email, String userAgent, String ipAddr, String activity, String currentTimestamp, boolean validity) {
 		
 		this.email = email;
 		this.userAgent = userAgent;
@@ -29,7 +26,7 @@ public class Audit {
 	}
 
 
-	public Audit(String email, String userAgent, String browser, String device, String os, String ipAddr, String activity, Timestamp currentTimestamp, boolean validity) {
+	public Audit(String email, String userAgent, String browser, String device, String os, String ipAddr, String activity, String currentTimestamp, boolean validity) {
 		
 		this.email = email;
 		this.userAgent = userAgent;
@@ -113,12 +110,12 @@ public class Audit {
 	}
 
 
-	public Timestamp getCurrentTimestamp() {
+	public String getCurrentTimestamp() {
 		return currentTimestamp;
 	}
 
 
-	public void setCurrentTimestamp(Timestamp currentTimestamp) {
+	public void setCurrentTimestamp(String currentTimestamp) {
 		this.currentTimestamp = currentTimestamp;
 	}
 

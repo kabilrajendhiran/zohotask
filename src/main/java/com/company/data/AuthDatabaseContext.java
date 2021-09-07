@@ -199,34 +199,17 @@ public class AuthDatabaseContext {
 		return arrayList;
 	}
 	
-	public List<Audit> getAllAuditsold(String emailId) throws SQLException
-	{
-		Connection connection = DBConfig.INSTANCE.getConnection();
-		String sql = "select * from audit where user_email = ? order by access_timestamp;";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1,emailId);
-
-		ResultSet resultSet = preparedStatement.executeQuery();
-		List<Audit> arrayList = Collections.synchronizedList(new ArrayList<>());
-
-		while (resultSet.next())
-		{
-			String email = resultSet.getString(2);
-			String userAgent = resultSet.getString(3);
-			String ipAddr = resultSet.getString(4);
-			String activity = resultSet.getString(5);
-			Timestamp currentTimestamp = resultSet.getTimestamp(6);
-			boolean validity = resultSet.getBoolean(7);
-			
-			//:TODO fix the audit object
-			
-		
-		    arrayList.add(new Audit(email, userAgent, ipAddr, activity, currentTimestamp, validity));
-		}
-		resultSet.close();
-		connection.close();
-		return arrayList;
-	}
+	/*
+	 * public List<Audit> getAllAuditsold(String emailId) throws SQLException { Connection connection = DBConfig.INSTANCE.getConnection(); String sql =
+	 * "select * from audit where user_email = ? order by access_timestamp;"; PreparedStatement preparedStatement = connection.prepareStatement(sql); preparedStatement.setString(1,emailId);
+	 * 
+	 * ResultSet resultSet = preparedStatement.executeQuery(); List<Audit> arrayList = Collections.synchronizedList(new ArrayList<>());
+	 * 
+	 * while (resultSet.next()) { String email = resultSet.getString(2); String userAgent = resultSet.getString(3); String ipAddr = resultSet.getString(4); String activity = resultSet.getString(5);
+	 * Timestamp currentTimestamp = resultSet.getTimestamp(6); boolean validity = resultSet.getBoolean(7);
+	 * 
+	 * arrayList.add(new Audit(email, userAgent, ipAddr, activity, currentTimestamp, validity)); } resultSet.close(); connection.close(); return arrayList; }
+	 */
 	
 	
 	public List<Audit> getAllAudits(String emailId) throws SQLException
@@ -249,7 +232,7 @@ public class AuthDatabaseContext {
 			String ipAddr = resultSet.getString(7);
 			String activity = resultSet.getString(8);
 			
-			Timestamp currentTimestamp = resultSet.getTimestamp(9);
+			String currentTimestamp = resultSet.getString(9);
 			boolean validity = resultSet.getBoolean(10);
 			
 			Audit audit = new Audit(email,userAgent,browser,device,os,ipAddr,activity,currentTimestamp,validity);

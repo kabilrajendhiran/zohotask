@@ -20,6 +20,7 @@ public enum DBConfig {
 
     public Connection getConnection()
     {
+    	
     	try {
 			if(connection.isClosed())
 			{

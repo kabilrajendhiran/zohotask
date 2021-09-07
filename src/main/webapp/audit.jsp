@@ -58,7 +58,7 @@
                     out.write("<td>"+ Encode.forHtml(audit.getOs())+"</td>");
                     out.write("<td>"+ Encode.forHtml(audit.getIpAddr()) +"</td>");
                     out.write("<td>"+ Encode.forHtml(audit.getActivity()) +"</td>");
-                    out.write("<td>"+ Encode.forHtml(audit.getCurrentTimestamp().toString()) +"</td>");
+                    out.write("<td>"+ Encode.forHtml(audit.getCurrentTimestamp()) +"</td>");
                     out.write("</tr>");
 
                 }

@@ -4,6 +4,12 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
+
+import com.company.audit.Audit;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Utility {
     public static String generateTicketID()
@@ -34,5 +40,29 @@ public class Utility {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return LocalDateTime.parse(dateTime,dateTimeFormatter);
     }
+    
+    public static Map<String,Object> auditToJson(Audit audit)
+    {
+    	ObjectMapper oMapper = new ObjectMapper();
+    	Map<String,Object> map = oMapper.convertValue(audit, Map.class);
+    	return map;
+    }
+    
+    public static Audit jsonToAudit(String json)
+    {
+    	ObjectMapper oMapper = new ObjectMapper();
+    	Audit audit=null;
+		try {
+			audit = oMapper.readValue(json, Audit.class);
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return audit;
+    }
+    
 
 }
